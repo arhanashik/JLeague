@@ -80,9 +80,13 @@ def searchPlayer():
 # Importing the dataset
 try:
     dataset = pd.read_csv('player_info.csv', encoding='SHIFT-JIS', header=None)
+    
+    # Prepare the dataset
     player_numbers = dataset.iloc[:, [0]].values
     player_names = dataset.iloc[:, [1]].values
     player_birthdays = dataset.iloc[:, [4]].values
+    
+    # Search the player
     searchPlayer()
 except FileNotFoundError:
     print("入力ファイルが見つかりません")
