@@ -19,7 +19,7 @@ era_list = [["令和","2019-05-01",2018],
             ["昭和","1926-12-25",1925]]
 
 # Importing the dataset
-dataset = pd.read_csv('player_info.csv', encoding="SHIFT-JIS")
+dataset = pd.read_csv('player_info.csv', encoding='SHIFT-JIS', header=None)
 player_numbers = dataset.iloc[:, [0]].values
 player_names = dataset.iloc[:, [1]].values
 player_birthdays = dataset.iloc[:, [4]].values
