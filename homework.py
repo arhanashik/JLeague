@@ -25,10 +25,17 @@ player_names = dataset.iloc[:, [1]].values
 player_birthdays = dataset.iloc[:, [4]].values
     
 def searchPlayer():
-    player_to_search = input ("背番号を入力してください: ")
+    input_number = input ("背番号を入力してください: ")
+    
+    try:
+        player_to_search = int(input_number)
+    except ValueError:
+        print("無効入力")
+        searchPlayer()
+        
 
     # Search the player
-    player_index = np.where(player_numbers == int(player_to_search))[0]
+    player_index = np.where(player_numbers == player_to_search)[0]
     
     if(len(player_index) == 0):
         # Player not found
