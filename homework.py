@@ -17,12 +17,6 @@ import datetime as dt
 era_list = [["令和","2019-05-01",2018],
             ["平成","1989-01-08",1988],
             ["昭和","1926-12-25",1925]]
-
-# Importing the dataset
-dataset = pd.read_csv('player_info.csv', encoding='SHIFT-JIS', header=None)
-player_numbers = dataset.iloc[:, [0]].values
-player_names = dataset.iloc[:, [1]].values
-player_birthdays = dataset.iloc[:, [4]].values
     
 def searchPlayer():
     input_number = input ("背番号を入力してください: ")
@@ -82,8 +76,16 @@ def searchPlayer():
         search_again = input ("もう一度検索(はい/いいえ): ")
         if(search_again == 'はい'):
             searchPlayer()
-        
-searchPlayer()
+            
+# Importing the dataset
+try:
+    dataset = pd.read_csv('player_info.csv', encoding='SHIFT-JIS', header=None)
+    player_numbers = dataset.iloc[:, [0]].values
+    player_names = dataset.iloc[:, [1]].values
+    player_birthdays = dataset.iloc[:, [4]].values
+    searchPlayer()
+except FileNotFoundError:
+    print("入力ファイルが見つかりません")
     
         
         
