@@ -27,6 +27,7 @@ player_birthdays = dataset.iloc[:, [4]].values
 def searchPlayer():
     input_number = input ("背番号を入力してください: ")
     
+    # Check input is actually number
     try:
         player_to_search = int(input_number)
     except ValueError:
@@ -35,11 +36,17 @@ def searchPlayer():
         
 
     # Search the player
-    player_index = np.where(player_numbers == player_to_search)[0]
+    try:
+        player_index = np.where(player_numbers == player_to_search)[0]
+    except UnboundLocalError:
+        print("無効入力")
+        searchPlayer()
+    
     
     if(len(player_index) == 0):
         # Player not found
         print("添付のファイルをご覧ください")
+        searchPlayer()
     else:
         # Player found.
         player_name = player_names[player_index[0]]
@@ -66,7 +73,7 @@ def searchPlayer():
         
         # Formatting as requirement
         birthday_jp = player_era + str(player_year) + '年' + str(month) + '月' + str(day) + '日'
-        output = player_to_search + '-' + name + '-' + birthday_jp
+        output = str(player_to_search) + '-' + name + '-' + birthday_jp
             
         # Print the output
         print(output)
